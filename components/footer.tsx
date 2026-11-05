@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
+import {useEffect, useState} from "react";
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
 const columnVariants = {
@@ -41,6 +41,12 @@ const logoVariants = {
 };
 
 export default function Footer() {
+  const [year, setYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="w-full bg-[#087f86] text-white">
       <div className="mx-auto w-full max-w-375 px-6 py-10 sm:px-10 lg:px-8 lg:py-0">
@@ -261,8 +267,7 @@ export default function Footer() {
       >
         <div className="flex min-h-9.5 items-center justify-center px-4">
           <p className="text-center text-[12px] font-normal leading-4.25 text-white">
-            Copyright {new Date().getFullYear()} - Design by BCB
-          </p>
+Copyright {year ?? ""} - Design by BCB          </p>
         </div>
       </motion.div>
     </footer>
