@@ -228,14 +228,12 @@ export default function Hero() {
 
         introTl
 
-          // location
           .to(location, {
             opacity: 1,
             y: 0,
             duration: 0.6,
           })
 
-          // heading
           .to(
             headingLines,
             {
@@ -248,7 +246,6 @@ export default function Hero() {
             "-=0.25"
           )
 
-          // description
           .to(
             description,
             {
@@ -259,7 +256,6 @@ export default function Hero() {
             "-=0.4"
           )
 
-          // price
           .to(
             price,
             {
@@ -272,7 +268,6 @@ export default function Hero() {
             "-=0.35"
           )
 
-          // CTA
           .to(
             cta,
             {
@@ -283,7 +278,6 @@ export default function Hero() {
             "-=0.35"
           )
 
-          // image
           .to(
             imageWrap,
             {
@@ -315,7 +309,6 @@ export default function Hero() {
 
         scrollTl
 
-          // Text exits upward
           .to(
             [location, headingLines, description, price, cta],
             {
@@ -328,7 +321,6 @@ export default function Hero() {
             0
           )
 
-          // Image container expands
           .to(
             imageWrap,
             {
@@ -342,7 +334,6 @@ export default function Hero() {
             0
           )
 
-          // Image zoom
           .to(
             image,
             {
@@ -379,6 +370,7 @@ export default function Hero() {
             /*
              * Return to exact original state
              */
+
             if (progress <= 0.001) {
               scrollTl.pause(0);
 
@@ -412,6 +404,7 @@ export default function Hero() {
             /*
              * Exact fullscreen state
              */
+
             if (progress >= 0.999) {
               scrollTl.progress(1);
 
@@ -459,58 +452,60 @@ export default function Hero() {
   return (
     <>
       <section
-        ref={sectionRef}
-        className="
-          relative
-          w-full
-          overflow-hidden
-          bg-[#e7e5df]
-        "
-      >
+  ref={sectionRef}
+  className="
+    relative
+    w-full
+    overflow-hidden
+    bg-[#ffffff]
+    pt-20
+    pb-8
+    md:pt-0
+    md:pb-0
+  "
+>
         <div
-          className="
-            flex
-            min-h-screen
-            w-full
-            flex-col
-            lg:flex-row
-          "
-        >
+  className="
+    flex
+    w-full
+    flex-col
+    lg:min-h-screen
+    lg:flex-row
+  "
+>
           {/* LEFT CONTENT */}
+
           <div
             className="
               flex
               w-full
               flex-col
               justify-center
-              bg-[#e7e5df]
+              bg-[#ffffff]
               px-6
-              py-12
-              sm:px-10
-              sm:py-15
-              md:px-13.75
-              md:py-17.5
+              py-3
+order-2
+            
+ lg:order-1
               lg:h-screen
               lg:w-[50%]
               lg:px-[7vw]
               lg:py-0
             "
           >
-            <div className="w-full max-w-[620px]">
+            <div className="w-full max-w-155">
 
-              {/* LOCATION */}
               <p
                 ref={locationRef}
                 className="
                   mb-4
-                  text-[10px]
-                  font-medium
+                  text-[14px]
+                  font-semibold
                   leading-3.5
                   tracking-[0.8px]
                   text-[#242421]
-                  sm:text-[11px]
                   lg:mb-4.5
-                  lg:text-[13px]
+                  lg:text-[18px]
                   lg:leading-4.25
                 "
               >
@@ -518,6 +513,7 @@ export default function Hero() {
               </p>
 
               {/* HEADING */}
+
               <h1
                 ref={headingRef}
                 className="m-0"
@@ -525,18 +521,10 @@ export default function Hero() {
                 <span
                   className="
                     block
-                    text-[30px]
+                    text-[34px]
                     font-bold
-                    leading-8.5
-                    tracking-[-1.2px]
+                    leading-10
                     text-[#007c85]
-                    sm:text-[38px]
-                    sm:leading-10.5
-                    md:text-[44px]
-                    md:leading-12
-                    lg:text-[54px]
-                    lg:leading-14
-                    lg:tracking-[-2px]
                     xl:text-[62px]
                     xl:leading-15.75
                   "
@@ -548,19 +536,23 @@ export default function Hero() {
                   className="
                     mt-2
                     block
-                    text-[30px]
+                    text-[34px]
                     font-bold
                     leading-8.5
                     tracking-[-1.2px]
                     text-[#e7b136]
+
                     sm:text-[38px]
                     sm:leading-10.5
+
                     md:text-[44px]
                     md:leading-12
+
                     lg:text-[54px]
                     lg:leading-14
                     lg:tracking-[-2px]
-                    xl:text-[62px]
+
+                    xl:text-[64px]
                     xl:leading-15.75
                   "
                 >
@@ -569,24 +561,28 @@ export default function Hero() {
               </h1>
 
               {/* DESCRIPTION */}
+
               <p
                 ref={descriptionRef}
                 className="
                   mx-auto
                   mt-5
-                  max-w-[520px]
-                  text-[12px]
+                  max-w-full
+                  text-[14px]
                   font-normal
-                  leading-4.5
+                  leading-7
                   text-[#292925]
+
                   sm:mt-5
                   sm:text-[14px]
                   sm:leading-5.25
+
                   lg:mx-0
                   lg:mt-5.5
-                  lg:max-w-[590px]
+                  lg:max-w-full
                   lg:text-[15px]
                   lg:leading-5.75
+
                   xl:text-[16px]
                   xl:leading-6
                 "
@@ -597,149 +593,207 @@ export default function Hero() {
               </p>
 
               {/* PRICE */}
-              <div
-                ref={priceRef}
-                className="
-                  mt-6
-                  flex
-                  w-full
-                  justify-center
-                  lg:mt-7
-                  lg:justify-start
-                "
-              >
-                <div
-                  className="
-                    flex
-                    h-[82px]
-                    w-[165px]
-                    flex-col
-                    justify-center
-                    rounded-[9px]
-                    border
-                    border-[#282825]
-                    px-[12px]
-                    text-left
-                    sm:h-[88px]
-                    sm:w-[185px]
-                    sm:px-[14px]
-                    lg:h-[102px]
-                    lg:w-[220px]
-                    lg:rounded-[11px]
-                    lg:px-[17px]
-                    xl:h-[112px]
-                    xl:w-[235px]
-                  "
-                >
-                  <span className="text-[10px] leading-[14px] text-[#252522] sm:text-[12px] sm:leading-[16px] lg:text-[13px] lg:leading-[18px] xl:text-[14px]">
-                    3 BHK Apartments from
-                  </span>
 
-                  <span
-                    className="
-                      mt-[3px]
-                      text-[22px]
-                      font-bold
-                      leading-[27px]
-                      tracking-[-0.5px]
-                      text-[#007c85]
-                      sm:text-[27px]
-                      sm:leading-[31px]
-                      lg:text-[32px]
-                      lg:leading-[36px]
-                      xl:text-[35px]
-                    "
-                  >
-                    ₹1.10 Cr*
-                  </span>
-                </div>
-              </div>
+<div
+  ref={priceRef}
+  className="
+    mt-6
+    flex
+    w-fit
+    flex-row
+    items-stretch
+
+    lg:mt-7
+  "
+>
+  {/* 3 BHK */}
+  <div
+    className="
+      flex
+      w-fit
+      flex-col
+      justify-center
+      rounded-[9px]
+      border
+      border-[#BFE6E6]
+      bg-white
+      px-4
+      py-4
+      text-left
+      shadow-[0_6px_20px_rgba(0,107,107,0.08)]
+
+      sm:px-5
+
+      lg:rounded-[11px]
+      lg:px-6
+
+      xl:px-7
+    "
+  >
+    <span
+      className="
+        text-[11px]
+        leading-3.5
+        text-[#006B6B]
+
+        sm:text-[12px]
+        sm:leading-4
+
+        lg:text-[13px]
+        lg:leading-4.5
+
+        xl:text-[14px]
+      "
+    >
+      3 BHK Apartments from
+    </span>
+
+    <span
+      className="
+        mt-1
+        whitespace-nowrap
+        text-[20px]
+        font-bold
+        leading-6.75
+        tracking-[-0.5px]
+        text-[#006B6B]
+
+        sm:mt-2
+        sm:text-[27px]
+        sm:leading-7.75
+
+        lg:text-[32px]
+        lg:leading-9
+
+        xl:text-[35px]
+      "
+    >
+      ₹1.10 Cr*
+    </span>
+  </div>
+</div>
 
               {/* CTA */}
-              <div
-                ref={ctaRef}
-                className="
-                  mt-5
-                  flex
-                  justify-center
-                  lg:mt-6
-                  lg:justify-start
-                "
-              >
-                <button
-                  type="button"
-                  onClick={() => setShowPopup(true)}
-                  className="
-                    h-[44px]
-                    rounded-[7px]
-                    bg-[#007d86]
-                    px-[20px]
-                    text-[10px]
-                    font-semibold
-                    tracking-[0.5px]
-                    text-white
-                    transition-all
-                    duration-300
-                    hover:-translate-y-[2px]
-                    hover:bg-[#006d74]
-                    hover:shadow-[0_8px_20px_rgba(0,125,134,0.22)]
-                    sm:h-[46px]
-                    sm:px-[23px]
-                    sm:text-[11px]
-                    lg:h-[50px]
-                    lg:rounded-[8px]
-                    lg:px-[27px]
-                    lg:text-[12px]
-                  "
-                >
-                  BOOK A SITE VISIT
-                </button>
-              </div>
+
+<div
+  ref={ctaRef}
+  className="
+    mt-5
+    flex
+    w-full
+    justify-start
+    lg:mt-6
+  "
+>
+  <button
+    type="button"
+    onClick={() => setShowPopup(true)}
+    className="
+      h-11
+      w-full
+      rounded-[7px]
+      border
+      border-[#006B6B]
+      bg-transparent
+      px-5
+      text-[12px]
+      font-semibold
+      tracking-[0.5px]
+      text-[#006B6B]
+      transition-all
+      duration-300
+
+      hover:-translate-y-0.5
+      hover:border-[#006B6B]
+      hover:bg-[#006B6B]
+      hover:text-white
+      hover:shadow-[0_8px_20px_rgba(0,107,107,0.18)]
+
+      sm:h-11.5
+      sm:px-5.75
+      sm:text-[11px]
+
+      lg:h-12.5
+      lg:rounded-lg
+      lg:px-6.75
+      lg:text-[16px]
+    "
+  >
+    BOOK A SITE VISIT
+  </button>
+</div>
             </div>
           </div>
 
           {/* RIGHT IMAGE */}
-          <div
-            ref={imageWrapRef}
-            className="
-              relative
-              h-[50vh]
-              min-h-[330px]
-              w-full
-              overflow-hidden
-              sm:h-[56vh]
-              sm:min-h-[400px]
-              md:h-[60vh]
-              lg:absolute
-              lg:right-0
-              lg:top-0
-              lg:h-screen
-              lg:w-[50%]
-              lg:min-h-0
-            "
-          >
-            <Image
-              ref={imageRef}
-              src="/images/hero.webp"
-              alt="Harmony residential community"
-              fill
-              priority
-              sizes="(max-width: 1023px) 100vw, 50vw"
-              className="
-                object-cover
-                object-center
-                will-change-transform
-              "
-            />
-          </div>
+
+<div
+  ref={imageWrapRef}
+  className="
+    relative
+    h-[50vh]
+    min-h-20.5
+    max-h-70
+    w-full
+    overflow-hidden
+    px-4
+    pb-6
+order-1
+    sm:min-h-100
+
+lg:order-2
+    md:h-[60vh]
+    md:px-8
+    md:pb-10
+
+    lg:absolute
+    lg:right-0
+    lg:top-0
+    lg:h-screen
+    lg:w-[50%]
+    lg:min-h-0
+    lg:max-h-full
+    lg:overflow-hidden
+    lg:px-0
+    lg:pb-0
+  "
+>
+  <div
+    className="
+      relative
+      h-full
+      w-full
+      overflow-hidden
+      rounded-[18px]
+
+      sm:rounded-[22px]
+
+      lg:rounded-none
+    "
+  >
+    <Image
+      ref={imageRef}
+      src="/images/hero.webp"
+      alt="Harmony residential community"
+      fill
+      priority
+      sizes="(max-width: 1023px) 100vw, 50vw"
+      className="
+        object-cover
+        object-center
+        will-change-transform
+      "
+    />
+  </div>
+</div>
         </div>
       </section>
 
       <Popup
         isOpen={showPopup}
         onClose={() => setShowPopup(false)}
-        title="Download Brochure"
-        download={true}
+        title="Book a Site Visit"
+        download={false}
       />
     </>
   );

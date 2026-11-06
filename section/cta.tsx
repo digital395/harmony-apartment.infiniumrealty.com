@@ -6,7 +6,7 @@ import EnquiryForm from "@/components/enquiry";
 
 export default function CTA() {
   return (
-    <section className="w-full overflow-hidden bg-[#e1dfd9]" id="contact">
+    <section className="w-full overflow-hidden bg-[#E8F7F7]" id="contact">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -37,7 +37,10 @@ export default function CTA() {
           xl:gap-8
         "
       >
-    
+
+        {/* =========================================================
+            ENQUIRY CONTENT
+        ========================================================== */}
 
         <motion.div
           variants={{
@@ -60,11 +63,11 @@ export default function CTA() {
             flex-col
             rounded-3xl
             border
-            border-black/[0.035]
+            border-white/20
             bg-white
             px-6
             py-7
-            shadow-[0_8px_35px_rgba(40,50,45,0.06)]
+            shadow-[0_8px_35px_rgba(0,0,0,0.06)]
             sm:px-8
             sm:py-9
             lg:w-[57%]
@@ -93,13 +96,12 @@ export default function CTA() {
             <p
               className="
                 m-0
-                text-[11px]
+                text-[13px]
                 font-bold
                 leading-3.75
                 tracking-[0.04em]
-                text-[#007c85]
-                sm:text-[12px]
-                lg:text-[13px]
+                text-[#0F8B8D]
+                lg:text-[16px]
               "
             >
               Find the home that fits your rhythm
@@ -118,7 +120,7 @@ export default function CTA() {
                 mt-2
                 h-px
                 max-w-61.25
-                bg-[#007c85]
+                bg-[#0F8B8D]
               "
             />
           </motion.div>
@@ -145,7 +147,7 @@ export default function CTA() {
               text-[15px]
               font-normal
               leading-6.25
-              text-[#30271f]
+              text-[#0F8B8D]
               sm:text-[16px]
               sm:leading-6.75
               lg:mt-4
@@ -189,6 +191,10 @@ export default function CTA() {
           </motion.div>
         </motion.div>
 
+        {/* =========================================================
+            IMAGE
+        ========================================================== */}
+
         <motion.div
           variants={{
             hidden: {
@@ -213,8 +219,8 @@ export default function CTA() {
             w-full
             overflow-hidden
             rounded-[20px]
-            bg-[#d8d5ce]
-            shadow-[0_8px_35px_rgba(40,50,45,0.08)]
+            bg-[#0B7375]
+            shadow-[0_8px_35px_rgba(0,0,0,0.08)]
             sm:min-h-105
             lg:min-h-full
             lg:w-[43%]
@@ -223,12 +229,12 @@ export default function CTA() {
         >
           <Image
             src="/images/cta.webp"
-            alt="Harmony apartment"
+            alt="Harmony villa"
             fill
             priority
             sizes="
               (max-width: 639px) 100vw,
-              (max-width: 1023px) 100vw,
+              (max-width: 1400px) 100vw,
               43vw
             "
             className="

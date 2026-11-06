@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import Popup from "./popup";
+import { usePathname, useRouter } from "next/navigation";
 
 const navItems = [
   { label: "About", id: "about" },
@@ -15,77 +16,80 @@ const navItems = [
 ];
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
-const easeSmooth = [0.22, 1, 0.36, 1] as const;
+// const easeSmooth = [0.22, 1, 0.36, 1] as const;
 
-const menuContainer = {
-  closed: {
-    opacity: 0,
-    height: 0,
-    transition: {
-      opacity: {
-        duration: 0.18,
-        ease: easeOut,
-      },
-      height: {
-        duration: 0.45,
-        ease: easeSmooth,
-      },
-    },
-  },
+// const menuContainer = {
+//   closed: {
+//     opacity: 0,
+//     height: 0,
+//     transition: {
+//       opacity: {
+//         duration: 0.18,
+//         ease: easeOut,
+//       },
+//       height: {
+//         duration: 0.45,
+//         ease: easeSmooth,
+//       },
+//     },
+//   },
 
-  open: {
-    opacity: 1,
-    height: "auto",
-    transition: {
-      height: {
-        duration: 0.5,
-        ease: easeSmooth,
-      },
-      opacity: {
-        duration: 0.25,
-        delay: 0.04,
-        ease: easeOut,
-      },
-    },
-  },
-};
+//   open: {
+//     opacity: 1,
+//     height: "auto",
+//     transition: {
+//       height: {
+//         duration: 0.5,
+//         ease: easeSmooth,
+//       },
+//       opacity: {
+//         duration: 0.25,
+//         delay: 0.04,
+//         ease: easeOut,
+//       },
+//     },
+//   },
+// };
 
-const menuContent = {
-  closed: {
-    y: -10,
-    opacity: 0,
-    scale: 0.985,
-  },
+// const menuContent = {
+//   closed: {
+//     y: -10,
+//     opacity: 0,
+//     scale: 0.985,
+//   },
 
-  open: {
-    y: 0,
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.42,
-      ease: easeOut,
-    },
-  },
-};
+//   open: {
+//     y: 0,
+//     opacity: 1,
+//     scale: 1,
+//     transition: {
+//       duration: 0.42,
+//       ease: easeOut,
+//     },
+//   },
+// };
 
-const mobileItem = {
-  closed: {
-    y: 12,
-    opacity: 0,
-  },
+// const mobileItem = {
+//   closed: {
+//     y: 12,
+//     opacity: 0,
+//   },
 
-  open: (index: number) => ({
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.38,
-      delay: 0.04 + index * 0.045,
-      ease: easeOut,
-    },
-  }),
-};
+//   open: (index: number) => ({
+//     y: 0,
+//     opacity: 1,
+//     transition: {
+//       duration: 0.38,
+//       delay: 0.04 + index * 0.045,
+//       ease: easeOut,
+//     },
+//   }),
+// };
 
 export default function Navbar() {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [enquireOpen, setEnquireOpen] = useState(false);
@@ -118,8 +122,27 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  const handleNavClick = () => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string
+  ) => {
+    e.preventDefault();
     setMenuOpen(false);
+
+    if (pathname === "/") {
+      const section = document.getElementById(id);
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+
+      return;
+    }
+
+    router.push(`/#${id}`);
   };
 
   const handleEnquireOpen = () => {
@@ -129,15 +152,15 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4 lg:px-8 lg:pt-5">
+      <header className="fixed inset-x-0 top-0 z-50 px-0 pt-0 sm:px-5 sm:pt-4 lg:px-8 lg:pt-5">
         <motion.nav
           initial={false}
           animate={{
             backgroundColor: scrolled
-              ? "rgba(255,255,255,0.72)"
-              : "rgba(255,255,255,0)",
+              ? "rgba(255,255,255,0.78)"
+              : "rgba(255,255,255,255)",
             borderColor: scrolled
-              ? "rgba(255,255,255,0.35)"
+              ? "rgba(15,139,141,0.14)"
               : "rgba(255,255,255,0)",
             boxShadow: scrolled
               ? "0 8px 30px rgba(0,0,0,0.08)"
@@ -149,7 +172,7 @@ export default function Navbar() {
           }}
           className="
             relative mx-auto w-full
-            rounded-2xl
+            rounded-none
             border
             backdrop-blur-xl
             lg:max-w-345
@@ -168,7 +191,7 @@ export default function Navbar() {
             <Link
               href="/"
               aria-label="Harmony Home"
-              onClick={handleNavClick}
+              onClick={() => setMenuOpen(false)}
               className="relative z-20 flex shrink-0 items-center"
             >
               <motion.div
@@ -185,7 +208,7 @@ export default function Navbar() {
                   height={40}
                   priority
                   className="
-                    h-10 w-auto object-contain
+                    h-15 w-auto object-contain
                     lg:h-20
                   "
                 />
@@ -197,8 +220,8 @@ export default function Navbar() {
                 {navItems.map((item) => (
                   <Link
                     key={item.id}
-                    href={`#${item.id}`}
-                    onClick={handleNavClick}
+                    href={`/#${item.id}`}
+                    onClick={(e) => handleNavClick(e, item.id)}
                     className={`
                       group relative
                       rounded-full
@@ -207,11 +230,7 @@ export default function Navbar() {
                       font-normal
                       tracking-[0.01em]
                       transition-all duration-300
-                      ${
-                        scrolled
-                          ? "text-black/80 hover:bg-black/5 hover:text-black"
-                          : "text-white hover:text-white/70"
-                      }
+                      text-[#0F8B8D]/90 hover:bg-[#0F8B8D]/5 hover:text-[#0F8B8D]
                     `}
                   >
                     <motion.span
@@ -232,7 +251,7 @@ export default function Navbar() {
                         -translate-x-1/2
                         transition-all duration-300
                         group-hover:w-[calc(100%-32px)]
-                        ${scrolled ? "bg-black/50" : "bg-white/70"}
+                        ${scrolled ? "bg-[#0F8B8D]/50" : "bg-white/70"}
                       `}
                     />
                   </Link>
@@ -241,37 +260,120 @@ export default function Navbar() {
                 <motion.button
                   type="button"
                   onClick={handleEnquireOpen}
-                  whileHover={{
-                    scale: 1.035,
-                  }}
-                  whileTap={{
-                    scale: 0.965,
-                  }}
-                  transition={{
-                    duration: 0.25,
-                    ease: easeOut,
-                  }}
-                  className={`
-                    ml-2
+                  whileHover="hover"
+                  whileTap={{ scale: 0.97 }}
+                  initial="rest"
+                  animate="rest"
+                  className="
+                    group ml-2
+                    flex items-center gap-3
                     rounded-full
-                    px-6 py-3
-                    text-[14px]
+                    border border-[#0F8B8D]/50
+                    bg-transparent
+                    px-5 py-2.5
+                    text-[16px]
                     font-medium
-                    tracking-[0.02em]
-                    transition-colors duration-300
-                    ${
-                      scrolled
-                        ? "bg-[#007b84] text-white hover:bg-[#006b73]"
-                        : "border border-white/70 bg-white/10 text-white backdrop-blur-sm hover:bg-white hover:text-[#007b84]"
-                    }
-                  `}
+                    tracking-[0.03em]
+                    text-[#0F8B8D]
+                    shadow-[0_3px_14px_rgba(0,0,0,0.06)]
+                    transition-all duration-300
+                    hover:border-[#0F8B8D]
+                    hover:bg-[#0F8B8D]
+                    hover:text-white
+                    hover:shadow-[0_6px_20px_rgba(0,0,0,0.12)]
+                  "
                 >
-                  Enquire
+                  <span>Enquire Now</span>
+
+                  <motion.span
+                    variants={{
+                      rest: {
+                        x: 0,
+                        y: 0,
+                      },
+                      hover: {
+                        x: 2,
+                        y: -2,
+                      },
+                    }}
+                    transition={{
+                      duration: 0.25,
+                      ease: easeOut,
+                    }}
+                    className="
+                      flex h-6 w-6
+                      items-center justify-center
+                      rounded-full
+                      border border-[#0F8B8D]/20
+                      group-hover:border-white/30
+                    "
+                  >
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-3.5 w-3.5"
+                    >
+                      <path
+                        d="M3 13L13 3M5 3H13V11"
+                        stroke="currentColor"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </motion.span>
                 </motion.button>
               </div>
             </div>
 
-            <motion.button
+            <motion.a
+              href="tel:+919787000000"
+              whileHover={{ scale: 1.035 }}
+              whileTap={{ scale: 0.965 }}
+              transition={{
+                duration: 0.25,
+                ease: easeOut,
+              }}
+              className="
+                relative z-30
+                flex items-center gap-2
+                rounded-full
+                border border-[#0F8B8D]
+                bg-white
+                px-4 py-2.5
+                text-[13px]
+                font-medium
+                tracking-[0.02em]
+                text-[#0F8B8D]
+                shadow-[0_4px_14px_rgba(0,0,0,0.08)]
+                transition-all duration-300
+                hover:bg-[#0F8B8D]
+                hover:text-white
+                hover:shadow-[0_6px_18px_rgba(0,107,107,0.14)]
+                lg:hidden
+              "
+              aria-label="Call now"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                className="h-4 w-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 6.75c0-1.243 1.007-2.25 2.25-2.25h2.18c.967 0 1.81.62 2.114 1.537l.72 2.16a2.25 2.25 0 01-.516 2.28l-1.42 1.42a16.5 16.5 0 005.774 5.774l1.42-1.42a2.25 2.25 0 012.28-.516l2.16.72A2.25 2.25 0 0120.25 18v2.18c0 1.243-1.007 2.25-2.25 2.25C9.99 22.43 1.57 14.01 1.57 4.75"
+                />
+              </svg>
+
+              <span>Call Now</span>
+            </motion.a>
+
+            {/* <motion.button
               type="button"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
@@ -284,7 +386,7 @@ export default function Navbar() {
                 rounded-full
                 transition-colors duration-300
                 lg:hidden
-                ${scrolled ? "bg-black/4" : "bg-white/8"}
+                ${scrolled ? "bg-[#0F8B8D]/5" : "bg-white/8"}
               `}
             >
               <span className="relative flex h-4.5 w-5.5 flex-col justify-between">
@@ -306,7 +408,7 @@ export default function Navbar() {
                   }}
                   className={`
                     block h-[1.5px] w-full origin-center
-                    ${scrolled ? "bg-black" : "bg-white"}
+                    ${scrolled ? "bg-[#0F8B8D]" : "bg-white"}
                   `}
                 />
 
@@ -321,7 +423,7 @@ export default function Navbar() {
                   }}
                   className={`
                     block h-[1.5px] w-full
-                    ${scrolled ? "bg-black" : "bg-white"}
+                    ${scrolled ? "bg-[#0F8B8D]" : "bg-white"}
                   `}
                 />
 
@@ -343,14 +445,14 @@ export default function Navbar() {
                   }}
                   className={`
                     block h-[1.5px] w-full origin-center
-                    ${scrolled ? "bg-black" : "bg-white"}
+                    ${scrolled ? "bg-[#0F8B8D]" : "bg-white"}
                   `}
                 />
               </span>
-            </motion.button>
+            </motion.button> */}
           </div>
 
-          <AnimatePresence initial={false}>
+          {/* <AnimatePresence initial={false}>
             {menuOpen && (
               <motion.div
                 variants={menuContainer}
@@ -373,8 +475,8 @@ export default function Navbar() {
                     backdrop-blur-2xl
                     ${
                       scrolled
-                        ? "border-black/8 bg-white/80"
-                        : "border-white/15 bg-black/40"
+                        ? "border-[#0F8B8D]/10 bg-white/90"
+                        : "border-white/15 bg-[#0F8B8D]/40"
                     }
                   `}
                 >
@@ -403,7 +505,7 @@ export default function Navbar() {
                             transition-all duration-200
                             ${
                               scrolled
-                                ? "border-black/8 text-black/85"
+                                ? "border-[#0F8B8D]/10 text-[#0F8B8D]"
                                 : "border-white/12 text-white"
                             }
                           `}
@@ -430,7 +532,11 @@ export default function Navbar() {
                             className={`
                               text-[18px]
                               font-light
-                              ${scrolled ? "text-black/30" : "text-white/40"}
+                              ${
+                                scrolled
+                                  ? "text-[#0F8B8D]/35"
+                                  : "text-white/40"
+                              }
                             `}
                           >
                             →
@@ -474,8 +580,8 @@ export default function Navbar() {
                       transition-colors duration-300
                       ${
                         scrolled
-                          ? "bg-[#007b84] text-white hover:bg-[#006b73]"
-                          : "bg-white text-[#007b84] hover:bg-white/90"
+                          ? "bg-[#0F8B8D] text-white hover:bg-[#0B7375]"
+                          : "bg-white text-[#0F8B8D] hover:bg-[#E8F7F7]"
                       }
                     `}
                   >
@@ -484,7 +590,7 @@ export default function Navbar() {
                 </motion.div>
               </motion.div>
             )}
-          </AnimatePresence>
+          </AnimatePresence> */}
         </motion.nav>
       </header>
 

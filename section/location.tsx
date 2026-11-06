@@ -11,11 +11,8 @@ import {
   FiX,
   FiMapPin,
   FiNavigation,
-  FiBookOpen,
-  FiShoppingBag,
 } from "react-icons/fi";
 import { BsBuilding } from "react-icons/bs";
-import { RiHospitalFill } from "react-icons/ri";
 
 type Advantage = {
   title: string;
@@ -45,9 +42,7 @@ const advantages: Advantage[] = [
       "IT Hubs around Peelamedu and Vilankurichi",
     ],
   },
-
 ];
-
 
 const sectionVariants: Variants = {
   hidden: {
@@ -204,7 +199,14 @@ export default function Location() {
   return (
     <section
       id="locations"
-      className="w-full px-3 pt-3 pb-6 sm:px-4 sm:pt-4 sm:pb-10"
+      className="
+        w-full
+        bg-[#ffffff]
+           px-5
+      py-8
+      lg:px-12
+      lg:py-10
+      "
     >
       <motion.div
         className="mx-auto w-full max-w-350"
@@ -233,11 +235,12 @@ export default function Location() {
             <p
               className="
                 m-0
-                text-[10px]
-                font-bold
+                text-[14px]
+                font-semibold
                 leading-3.5
-                text-[#007c85]
-                sm:text-[11px]
+                text-[#0F8B8D]
+
+                sm:text-[16px]
               "
             >
               LOCATION
@@ -260,7 +263,12 @@ export default function Location() {
                 ease: "easeOut",
                 delay: 0.3,
               }}
-              className="mx-auto mt-1.75 h-px bg-[#007c85]"
+              className="
+                mx-auto
+                mt-1.75
+                h-px
+                bg-[#0F8B8D]
+              "
             />
           </motion.div>
 
@@ -275,14 +283,15 @@ export default function Location() {
               text-[16px]
               font-bold
               leading-5.75
-              text-[#241500]
+              text-[#0B7375]
+
               sm:mt-3.5
               sm:text-[17px]
               sm:leading-6
             "
           >
-            Off Avinashi Road, well connected Kaikolapalayam, Vellanaipatti,
-            Annur Taluk,Coimbatore.
+            Off Avinashi Road, well connected Kaikolapalayam,
+            Vellanaipatti, Annur Taluk, Coimbatore.
           </motion.h2>
 
           {/* SMALL GAP BEFORE CONTENT */}
@@ -320,11 +329,14 @@ export default function Location() {
             flex-col
             items-stretch
             gap-5
+
             md:mt-5
             md:flex-row
             md:gap-4
+
             lg:mt-6
             lg:gap-5
+
             xl:gap-6
           "
         >
@@ -338,8 +350,13 @@ export default function Location() {
               w-full
               overflow-hidden
               rounded-lg
+              border
+              border-[#0F8B8D]/20
+              bg-white
+
               md:w-[70%]
               md:rounded-lg
+
               lg:w-[69%]
             "
           >
@@ -351,6 +368,7 @@ export default function Location() {
                 h-65
                 w-full
                 border-0
+
                 sm:h-82.5
                 md:h-107.5
                 lg:h-112.5
@@ -372,13 +390,16 @@ export default function Location() {
               w-full
               overflow-hidden
               rounded-lg
+              border
+              border-[#0F8B8D]/20
               bg-white
+
               md:w-[30%]
               lg:w-[31%]
             "
           >
             {/* =========================
-                TEAL HEADER
+                DARK HEADER
             ========================== */}
 
             <motion.div
@@ -387,7 +408,7 @@ export default function Location() {
               animate="visible"
               whileHover={{
                 y: -1,
-                backgroundColor: "#006f77",
+                backgroundColor: "#0B7375",
               }}
               className="
                 relative
@@ -397,7 +418,7 @@ export default function Location() {
                 justify-center
                 gap-2
                 overflow-hidden
-                bg-[#007c85]
+                bg-[#0F8B8D]
                 px-3
                 text-[11px]
                 font-semibold
@@ -405,9 +426,12 @@ export default function Location() {
                 text-white
                 uppercase
                 shadow-sm
+
                 sm:h-11.5
+
                 lg:h-12
                 lg:text-[13px]
+
                 xl:h-12.5
                 xl:text-[14px]
               "
@@ -522,8 +546,8 @@ export default function Location() {
                         duration-300
                         ${
                           isOpen
-                            ? "bg-[#007c85] text-white shadow-sm"
-                            : "bg-[#e8e8ea] text-[#333333] hover:bg-[#dedee0]"
+                            ? "bg-[#0F8B8D] text-white shadow-sm"
+                            : "bg-[#E8F7F7] text-[#0B7375] hover:bg-[#DDF2F2]"
                         }
                       `}
                     >
@@ -539,11 +563,14 @@ export default function Location() {
                           gap-2
                           text-center
                           text-[11px]
-                          leading-tight
                           font-semibold
+                          leading-tight
                           uppercase
+
                           sm:text-[12px]
+
                           lg:text-[12px]
+
                           xl:text-[13px]
                         "
                       >
@@ -601,10 +628,11 @@ export default function Location() {
                             className="
                               border-x
                               border-b
-                              border-[#e5e5e5]
+                              border-[#0F8B8D]/20
                               bg-white
                               px-3
                               py-3
+
                               lg:px-4
                               lg:py-4
                             "
@@ -624,13 +652,16 @@ export default function Location() {
                                       gap-2
                                       text-[10px]
                                       leading-normal
-                                      text-[#555555]
+                                      text-[#0F8B8D]
+
                                       sm:text-[11px]
+
                                       lg:text-[11px]
+
                                       xl:text-[12px]
                                     "
                                   >
-                                    {/* Teal bullet */}
+                                    {/* Grey bullet */}
 
                                     <motion.span
                                       initial={{
@@ -653,7 +684,8 @@ export default function Location() {
                                         w-1.25
                                         shrink-0
                                         rounded-full
-                                        bg-[#007c85]
+                                        bg-[#0F8B8D]
+
                                         lg:h-1.5
                                         lg:w-1.5
                                       "

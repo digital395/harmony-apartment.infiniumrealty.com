@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useState } from "react";
 import { isLeadValid } from "@/utils/LeadVerification";
 import Popup from "@/components/popup";
@@ -72,9 +71,6 @@ const buttonVariants: Variants = {
 };
 
 export default function HarmonyFilmSection() {
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  // Lead popup state
   const [isLeadPopupOpen, setIsLeadPopupOpen] = useState(false);
 
   const brochureUrl = "/brochure.pdf";
@@ -91,26 +87,16 @@ export default function HarmonyFilmSection() {
   };
 
   const handleDownloadBrochure = () => {
-    // Already verified within 24 hours
     if (isLeadValid()) {
       downloadBrochure();
       return;
     }
 
-    // Not verified → open lead popup
     setIsLeadPopupOpen(true);
   };
 
-  const handleLeadSuccess = () => {
-    setIsLeadPopupOpen(false);
-
-    // Your popup should already call saveLeadVerification()
-    // after the /api/lead request succeeds.
-    downloadBrochure();
-  };
-
   return (
-    <section className="w-full overflow-hidden bg-[#e1dfd9]">
+    <section className="w-full overflow-hidden bg-[#E8F7F7]">
       <motion.div
         variants={sectionVariants}
         initial="hidden"
@@ -131,15 +117,11 @@ export default function HarmonyFilmSection() {
             w-full
             flex-col
             items-center
-            px-5
-            pb-4.5
-            pt-9
+    px-5
+      py-8
+      lg:px-12
+      lg:py-10
             text-center
-            sm:px-7.5
-            sm:pb-5.5
-            sm:pt-10
-            lg:pb-5.5
-            lg:pt-9.25
           "
         >
           <motion.div
@@ -149,11 +131,12 @@ export default function HarmonyFilmSection() {
             <p
               className="
                 m-0
-                text-[10px]
-                font-bold
+                text-[14px]
+                font-semibold
                 leading-3.5
-                text-[#007c85]
-                sm:text-[11px]
+                text-[#0F8B8D]
+
+                sm:text-[15px]
                 sm:leading-3.75
               "
             >
@@ -181,7 +164,7 @@ export default function HarmonyFilmSection() {
                 mx-auto
                 mt-1.75
                 h-px
-                bg-[#007c85]
+                bg-[#0F8B8D]
               "
             />
           </motion.div>
@@ -195,10 +178,12 @@ export default function HarmonyFilmSection() {
               text-[16px]
               font-bold
               leading-5.75
-              text-[#251500]
+              text-[#0B7375]
+
               sm:mt-3.5
               sm:text-[17px]
               sm:leading-6
+
               lg:text-[17px]
             "
           >
@@ -207,46 +192,44 @@ export default function HarmonyFilmSection() {
         </motion.div>
 
         {/* =========================================================
-            CENTERED VIDEO / HERO
+            CENTERED YOUTUBE VIDEO
         ========================================================== */}
 
-{/* =========================================================
-    CENTERED YOUTUBE VIDEO
-========================================================= */}
+        <div className="w-full px-3 sm:px-4">
+          <div className="mx-auto w-full max-w-350">
+            <motion.div
+              variants={mediaVariants}
+              className="
+                relative
+                aspect-video
+                w-full
+                overflow-hidden
+                rounded-xl
+                bg-white
+                shadow-[0_8px_30px_rgba(0,0,0,0.08)]
 
-<div className="w-full px-3 sm:px-4">
-  <div className="mx-auto w-full max-w-350">
-    <motion.div
-      variants={mediaVariants}
-      className="
-        relative
-        aspect-video
-        w-full
-        overflow-hidden
-        rounded-xl
-        bg-[#f3f3f3]
-        shadow-sm
-        sm:rounded-[18px]
-        lg:aspect-16/6.5
-        lg:rounded-[20px]
-      "
-    >
-      <iframe
-  src="https://www.youtube.com/embed/hOExZWGLkLU?autoplay=1&mute=1&rel=0&playsinline=1"
-  title="Harmony Film"
-  className="
-    absolute
-    inset-0
-    h-full
-    w-full
-    border-0
-  "
-  allow="autoplay; encrypted-media; picture-in-picture"
-  allowFullScreen
-/>
-    </motion.div>
-  </div>
-</div>
+                sm:rounded-[18px]
+
+                lg:aspect-16/6.5
+                lg:rounded-[20px]
+              "
+            >
+              <iframe
+                src="https://www.youtube.com/embed/hOExZWGLkLU?autoplay=1&mute=1&rel=0&playsinline=1"
+                title="Harmony Film"
+                className="
+                  absolute
+                  inset-0
+                  h-full
+                  w-full
+                  border-0
+                "
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+              />
+            </motion.div>
+          </div>
+        </div>
 
         {/* =========================================================
             CTA
@@ -261,11 +244,13 @@ export default function HarmonyFilmSection() {
             justify-center
             px-5
             py-5.25
+
             sm:py-6.25
+
             lg:py-5.25
           "
         >
-          <motion.button
+          {/* <motion.button
             type="button"
             onClick={handleDownloadBrochure}
             whileHover={{
@@ -285,24 +270,26 @@ export default function HarmonyFilmSection() {
               items-center
               justify-center
               rounded-[7px]
-              bg-[#007c85]
+              bg-[#0F8B8D]
               px-3.25
-              text-[10px]
+              text-[13px]
               font-semibold
               leading-none
               text-white
               transition-colors
               duration-200
-              hover:bg-[#006d74]
+
+              hover:bg-[#0B7375]
+
               focus:outline-none
               focus:ring-2
-              focus:ring-[#007c85]
+              focus:ring-[#0F8B8D]
               focus:ring-offset-2
-              focus:ring-offset-[#e1dfd9]
+              focus:ring-offset-[#E8F7F7]
             "
           >
             DOWNLOAD BROCHURE
-          </motion.button>
+          </motion.button> */}
         </motion.div>
       </motion.div>
 
@@ -311,11 +298,11 @@ export default function HarmonyFilmSection() {
       ========================================================== */}
 
       <Popup
-  isOpen={isLeadPopupOpen}
-  onClose={() => setIsLeadPopupOpen(false)}
-  title="Download Brochure"
-  download={true}
-/>
+        isOpen={isLeadPopupOpen}
+        onClose={() => setIsLeadPopupOpen(false)}
+        title="Download Brochure"
+        download={true}
+      />
     </section>
   );
 }

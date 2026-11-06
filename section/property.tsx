@@ -15,12 +15,6 @@ type Property = {
 
 const apartmentProperties: Property[] = [
   {
-    type: "2 BHK Apartment",
-    image: "/images/property/2-bhk.webp",
-    title: "2 BHK",
-    area: "1,084 sq.ft.",
-  },
-  {
     type: "3 BHK Apartment",
     image: "/images/property/3-bhk.webp",
     title: "3 BHK",
@@ -61,7 +55,7 @@ export default function ChooseYourHome() {
   const handlePriceClick = () => {
     if (isLeadValid()) {
       window.open(
-        "/brochure.pdf",
+        "/brochure/harmony-price-floor-plan.pdf",
         "_blank"
       );
       return;
@@ -71,22 +65,18 @@ export default function ChooseYourHome() {
   };
 
   return (
-    <section className="w-full overflow-hidden bg-[#e1dfd9]" id="details">
+    <section
+      className="w-full overflow-hidden bg-[#E8F7F7]"
+      id="details"
+    >
       <div
         className="
           mx-auto
           w-full
-          max-w-350
-          px-6
-          py-12
-
-          sm:px-10
-          sm:py-13.75
-
-          lg:px-15.75
-          lg:py-18
-
-          xl:py-20.5
+              px-5
+      py-8
+      lg:px-12
+      lg:py-10
         "
       >
         {/* =========================================================
@@ -131,7 +121,6 @@ export default function ChooseYourHome() {
               w-full
               flex-col
               items-center
-
               lg:items-start
             "
           >
@@ -164,16 +153,12 @@ export default function ChooseYourHome() {
               <p
                 className="
                   m-0
-                  text-[10px]
+                  text-[14px]
                   font-bold
                   leading-3.25
                   tracking-[0.1px]
-                  text-[#007c85]
-
-                  sm:text-[11px]
-                  sm:leading-3.5
-
-                  lg:text-[13px]
+                  text-[#0F8B8D]
+                  lg:text-[16px]
                   lg:leading-4
                 "
               >
@@ -200,7 +185,7 @@ export default function ChooseYourHome() {
                 className="
                   mt-1.75
                   h-px
-                  bg-[#007c85]
+                  bg-[#0F8B8D]
 
                   lg:h-0.5
                   lg:w-47.5
@@ -229,18 +214,11 @@ export default function ChooseYourHome() {
               }}
               className="
                 m-0
-                mt-2.25
+                mt-5.25
                 text-[18px]
                 font-bold
                 leading-6
-                text-[#221100]
-
-                sm:text-[20px]
-                sm:leading-6.5
-
-                lg:text-[27px]
-                lg:leading-8.5
-
+                text-[#0B7375]
                 xl:text-[30px]
                 xl:leading-9.5
               "
@@ -273,7 +251,7 @@ export default function ChooseYourHome() {
                 text-[15px]
                 font-normal
                 leading-5.25
-                text-[#221100]
+                text-[#0F8B8D]
 
                 sm:text-[16px]
                 sm:leading-5.5
@@ -285,7 +263,7 @@ export default function ChooseYourHome() {
                 xl:leading-7
               "
             >
-              Pick 2 BHK or 3 BHK Apartment and see what is on offer.
+              Pick Row Villa or Individual Villa and see what is on offer.
             </motion.p>
           </div>
 
@@ -321,43 +299,35 @@ export default function ChooseYourHome() {
               rounded-[11px]
               bg-white
               p-1.25
+              shadow-[0_2px_10px_rgba(0,0,0,0.04)]
             "
           >
             <div
               className="
+                flex
                 h-9.5
+                items-center
+                justify-center
                 rounded-[7px]
-                bg-[#007c85]
+                bg-[#0F8B8D]
                 px-2.75
-                text-[10px]
+                text-[14px]
                 font-bold
                 leading-none
                 text-white
                 shadow-sm
-                flex
-                items-center
-                justify-center
-
-                sm:h-10
-                sm:px-3.5
-                sm:text-[11px]
-
-                lg:h-12
-                lg:px-5
-                lg:text-[13px]
-
-                xl:h-12.5
-                xl:px-5.75
-                xl:text-[14px]
+               md:h-12.5
+                md:px-5.75
+                md:text-[14px]
               "
             >
-              Apartments · 2 &amp; 3 BHK
+              Apartment · 3 BHK
             </div>
           </motion.div>
         </motion.div>
 
         {/* =========================================================
-            VILLA CARDS
+            Apartment  CARDS
         ========================================================== */}
 
         <AnimatePresence mode="wait">
@@ -369,238 +339,224 @@ export default function ChooseYourHome() {
               once: true,
               amount: 0.12,
             }}
-            className="
-              mt-11.25
-              flex
-              gap-7.5
-              overflow-x-auto
-              pb-2
-              scrollbar-none
+className="
+  mt-10
+  flex
+  w-full
+  flex-col
+  items-center
+  gap-6
 
-              sm:mt-12
-              sm:gap-7.5
+  sm:mt-12
+  sm:gap-7
 
-              lg:mt-13.75
-              lg:grid
-lg:grid-cols-3
-lg:justify-items-center
-lg:gap-9
-              lg:overflow-visible
-              lg:pb-0
+  lg:mt-13.75
+  lg:grid
+  lg:grid-cols-3
+  lg:items-stretch
+  lg:gap-9
 
-              xl:gap-10.5
-            "
+  xl:gap-10.5
+"
           >
             {apartmentProperties.map((property) => (
-              <motion.article
-                key={property.area}
-                variants={cardVariants}
-                whileHover={{
-                  y: -8,
-                }}
-                transition={{
-                  y: {
-                    duration: 0.35,
-                    ease: easeInOut,
-                  },
-                }}
-                className="
-                  w-61.5
-                  min-w-61.5
-                  overflow-hidden
-                  bg-[#fffaf4]
-                  shadow-[0_4px_15px_rgba(0,0,0,0.04)]
+<motion.article
+  key={property.area}
+  variants={cardVariants}
+  whileHover={{ y: -6 }}
+  transition={{
+    y: {
+      duration: 0.35,
+      ease: easeInOut,
+    },
+  }}
+  className="
+    w-full
+    overflow-hidden
+    rounded-[18px]
+    border
+    border-[#0F8B8D]/20
+    bg-white
+    p-6
+    shadow-[0_2px_10px_rgba(0,0,0,0.04)]
+  "
+>
+  {/* FLOOR PLAN */}
+  <motion.div
+    initial={{ opacity: 0, scale: 0.98 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    transition={{
+      duration: 0.6,
+      ease: easeInOut,
+    }}
+    className="
+      relative
+      flex
+      h-40.5
+      w-full
+      items-center
+      justify-center
+      overflow-hidden
+      rounded-xl
+      border
+      border-[#0F8B8D]/30
+      bg-[#F2FFFF]
+    "
+  >
+    {property.image ? (
+      <motion.div
+        className="absolute inset-0"
+        initial={{ scale: 1.03 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: 1.02 }}
+        transition={{
+          duration: 0.8,
+          ease: easeInOut,
+        }}
+      >
+        <Image
+          src={property.image}
+          alt={`${property.type} floor plan`}
+          fill
+          sizes="
+            (max-width: 639px) 100vw,
+            (max-width: 1023px) 50vw,
+            33vw
+          "
+          className="object-cover object-center"
+        />
+      </motion.div>
+    ) : (
+      <span
+        className="
+          relative
+          z-10
+          text-center
+          text-[14px]
+          font-normal
+          text-[#0F8B8D]
+        "
+      >
+        FLOOR PLAN · {property.type}
+      </span>
+    )}
+  </motion.div>
 
-                  sm:w-67.5
-                  sm:min-w-67.5
+  {/* CONTENT */}
+  <div className="pt-5">
+    
+    {/* TITLE + TYPE */}
+    <div
+      className="
+        flex
+        items-center
+        justify-between
+        gap-4
+      "
+    >
+      <h3
+        className="
+          m-0
+          text-[20px]
+          font-bold
+          leading-none
+          tracking-[-0.5px]
+          text-[#0B7375]
+          lg:text-[34px]
+        "
+      >
+        {property.title}
+      </h3>
 
-                  lg:w-full
-                  lg:min-w-0
-                "
-              >
-                {/* IMAGE */}
+      <span
+        className="
+          shrink-0
+          text-[15px]
+          font-medium
+          leading-none
+          text-[#0F8B8D]
+        "
+      >
+        {property.type}
+      </span>
+    </div>
 
-                <motion.div
-                  className="
-                    relative
-                    h-41
-                    w-full
-                    overflow-hidden
+    {/* AREA */}
+{/* AREA */}
+<div
+  className="
+    mt-5
+    flex
+    items-center
+    justify-between
+    gap-4
+  "
+>
+  <p
+    className="
+      m-0
+        text-[15px]
+          font-medium
+          leading-none
+          text-[#0F8B8D]
+    "
+  >
+    Super built-up area
+  </p>
 
-                    sm:h-41.25
+  <p
+    className="
+      m-0
+      shrink-0
+      text-[20px]
+      md:text-[25px]
+      font-bold
+      leading-8
+      tracking-[-0.3px]
+      text-[#0B7375]
+    "
+  >
+    {property.area}
+  </p>
+</div>
 
-                    lg:h-57.5
-
-                    xl:h-67.5
-                  "
-                >
-                  <motion.div
-                    className="absolute inset-0"
-                    initial={{
-                      scale: 1.08,
-                    }}
-                    whileInView={{
-                      scale: 1,
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
-                    whileHover={{
-                      scale: 1.05,
-                    }}
-                    transition={{
-                      duration: 0.9,
-                      ease: easeInOut,
-                    }}
-                  >
-                    <Image
-                      src={property.image}
-                      alt={property.type}
-                      fill
-                      sizes="
-                        (max-width: 639px) 246px,
-                        (max-width: 1023px) 270px,
-                        33vw
-                      "
-                      className="object-cover object-center"
-                    />
-                  </motion.div>
-
-                  {/* IMAGE LABEL */}
-
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                      x: -10,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.25,
-                      ease: easeInOut,
-                    }}
-                    className="
-                      absolute
-                      left-2.5
-                      top-2.75
-                      bg-white
-                      px-2.5
-                      py-1.5
-                      text-[10px]
-                      font-normal
-                      leading-3
-                      text-[#252522]
-
-                      lg:left-4
-                      lg:top-4
-                      lg:px-3.25
-                      lg:py-2
-                      lg:text-[12px]
-                      lg:leading-3.75
-                    "
-                  >
-                    {property.type}
-                  </motion.div>
-                </motion.div>
-
-                {/* CONTENT */}
-
-                <div
-                  className="
-                    flex
-                    h-17.5
-                    flex-col
-                    items-center
-                    justify-center
-                    bg-[#fffaf4]
-
-                    lg:h-26.25
-                  "
-                >
-                  <h3
-                    className="
-                      m-0
-                      text-[15px]
-                      font-bold
-                      leading-4.5
-                      text-[#221100]
-
-                      lg:text-[21px]
-                      lg:leading-6.25
-
-                      xl:text-[23px]
-                      xl:leading-7
-                    "
-                  >
-                    {property.title}
-                  </h3>
-
-                  <div
-                    className="
-                      mt-1.25
-                      flex
-                      items-center
-                      gap-3.5
-                      text-[9px]
-                      font-normal
-                      leading-3
-                      text-[#817c76]
-
-                      lg:mt-2.25
-                      lg:gap-4.5
-                      lg:text-[12px]
-                      lg:leading-4
-
-                      xl:text-[13px]
-                    "
-                  >
-                    <span>Super built-up area</span>
-                    <span>{property.area}</span>
-                  </div>
-                </div>
-
-                {/* CTA */}
-
-                <motion.button
-                  type="button"
-                  onClick={handlePriceClick}
-                  whileHover={{
-                    backgroundColor: "#006d74",
-                  }}
-                  whileTap={{
-                    scale: 0.98,
-                  }}
-                  className="
-                    flex
-                    h-6.25
-                    w-full
-                    items-center
-                    justify-center
-                    bg-[#007c85]
-                    text-[8px]
-                    font-medium
-                    tracking-[1px]
-                    text-white
-                    transition-colors
-                    duration-200
-
-                    lg:h-10
-                    lg:text-[11px]
-                    lg:tracking-[1.2px]
-
-                    xl:h-11
-                    xl:text-[12px]
-                  "
-                >
-                  GET PRICE &amp; FLOOR PLAN
-                </motion.button>
-              </motion.article>
+    {/* CTA */}
+    <motion.button
+      type="button"
+      // onClick={handlePriceClick}
+onClick={() => setIsPopupOpen(true)}
+      whileHover={{
+        backgroundColor: "#0B7375",
+      }}
+      whileTap={{
+        scale: 0.985,
+      }}
+      className="
+        mt-5
+        flex
+        h-10
+        md:h-15
+        w-full
+        items-center
+        justify-center
+        rounded-xl
+        bg-[#0F8B8D]
+        px-5
+        text-[15px]
+        md:text-[17px]
+        font-semibold
+        leading-none
+        text-white
+        transition-colors
+        duration-200
+      "
+    >
+      Get price &amp; floor plan
+    </motion.button>
+  </div>
+</motion.article>
             ))}
           </motion.div>
         </AnimatePresence>
@@ -614,7 +570,7 @@ lg:gap-9
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
         title="Get Price & Floor Plan"
-        download={true}
+        download={false}
       />
     </section>
   );

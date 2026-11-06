@@ -22,7 +22,7 @@ const features: Feature[] = [
   {
     title: "A Choice of Homes",
     description:
-      "2 & 3 BHK apartments thoughtfully planned for different lifestyle needs.",
+      "3 & 4 BHK villas, thoughtfully planned for different lifestyle needs.",
     icon: <HiOutlineHomeModern />,
   },
   {
@@ -39,8 +39,7 @@ const features: Feature[] = [
   },
   {
     title: "Spacious Living",
-    description:
-      "Apartment sizes from 1,084 sq.ft. onwards.",
+    description: "Villa sizes from 2,420 sq.ft. onwards.",
     icon: <TbRulerMeasure />,
   },
   {
@@ -63,10 +62,6 @@ export default function WhyHarmony() {
   const [activeFeature, setActiveFeature] = useState(1);
   const [isVisitOpen, setIsVisitOpen] = useState(false);
 
-  /*
-   * Automatically highlights each feature one after another.
-   * The user can still click any feature manually.
-   */
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveFeature((current) => (current + 1) % features.length);
@@ -76,24 +71,23 @@ export default function WhyHarmony() {
   }, []);
 
   return (
-    <section className="w-full overflow-hidden bg-[#e1dfd9]">
+    <section className="w-full overflow-hidden bg-[#E8F7F7]">
       <div
         className="
           mx-auto
           flex
           w-full
-          max-w-7xl
           flex-col
-          px-4.25
-          py-11.5
+      px-5
+      py-8
+      lg:px-12
+      lg:py-10
 
-          sm:px-10
-          sm:py-13.75
+
 
           lg:flex-row
           lg:items-center
-          lg:px-7.5
-          lg:py-21.25
+
         "
       >
         {/* =========================================================
@@ -117,19 +111,15 @@ export default function WhyHarmony() {
             duration: 0.8,
             ease: easeInOut,
           }}
-          className="
-            grid
-            w-full
-            grid-cols-2
-            gap-4
-
-            sm:mx-auto
-            sm:max-w-125
-            sm:gap-5
+         className="
+  order-2
+  grid
+  w-full
+  md:w-[50%]
+  grid-cols-2
+  gap-4
 
             lg:mx-0
-            lg:w-135
-            lg:max-w-none
             lg:grid-cols-3
             lg:gap-5
           "
@@ -177,8 +167,7 @@ export default function WhyHarmony() {
                   border
                   px-2.5
                   text-center
-
-                  transition-colors
+                  transition-all
                   duration-300
 
                   sm:h-37.5
@@ -187,65 +176,69 @@ export default function WhyHarmony() {
 
                   ${
                     isActive
-                      ? "border-[#007c85] bg-[#007f87] text-white shadow-[0_10px_25px_rgba(0,124,133,0.18)]"
-                      : "border-[#d3d0c9] bg-transparent text-[#171713] hover:border-[#007c85]"
+                      ? "border-[#0F8B8D] bg-[#0F8B8D] text-white shadow-[0_10px_25px_rgba(0,0,0,0.12)]"
+                      : "border-[#0F8B8D]/20 bg-white text-[#0B7375] hover:border-[#0F8B8D]/40 hover:bg-[#DDF2F2]"
                   }
                 `}
               >
                 {/* ICON */}
 
-                <motion.div
-                  animate={{
-                    scale: isActive ? 1.08 : 1,
-                    y: isActive ? -2 : 0,
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: easeInOut,
-                  }}
-                  className={`
-                    flex
-                    h-10
-                    items-center
-                    justify-center
+             {/* ICON */}
+<motion.div
+  animate={{
+    scale: isActive ? 1.08 : 1,
+    y: isActive ? -2 : 0,
+  }}
+  transition={{
+    duration: 0.4,
+    ease: easeInOut,
+  }}
+  className={`
+    flex
+    h-16
+    items-center
+    justify-center
+    [&>svg]:h-6
+    [&>svg]:w-6
+    lg:[&>svg]:h-8
+    lg:[&>svg]:w-8
 
-                    ${
-                      isActive
-                        ? "text-white"
-                        : "text-[#007c85]"
-                    }
-                  `}
-                >
-                  {feature.icon}
-                </motion.div>
+    ${isActive ? "text-white" : "text-[#0F8B8D]"}
+  `}
+>
+  {feature.icon}
+</motion.div>
+
+{/* LABEL */}
+<motion.span
+  animate={{
+    y: isActive ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.35,
+    ease: easeInOut,
+  }}
+  className="
+    mt-3
+    max-w-30
+    text-[14px]
+    font-normal
+    leading-5
+
+    sm:text-[15px]
+    sm:leading-5.5
+
+    lg:max-w-35
+    lg:text-[16px]
+    lg:leading-6
+  "
+>
+  {feature.title}
+</motion.span>
 
                 {/* LABEL */}
 
-                <motion.span
-                  animate={{
-                    y: isActive ? 1 : 0,
-                  }}
-                  transition={{
-                    duration: 0.35,
-                    ease: easeInOut,
-                  }}
-                  className="
-                    mt-2
-                    max-w-26.25
-                    text-[12px]
-                    font-normal
-                    leading-4.25
-
-                    sm:text-[13px]
-                    sm:leading-4.5
-
-                    lg:max-w-32.5
-                    lg:text-[14px]
-                    lg:leading-4.75
-                  "
-                >
-                  {feature.title}
-                </motion.span>
+             
               </motion.button>
             );
           })}
@@ -255,48 +248,54 @@ export default function WhyHarmony() {
             RIGHT CONTENT
         ========================================================== */}
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            x: 35,
-          }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.2,
-          }}
-          transition={{
-            duration: 0.8,
-            delay: 0.15,
-            ease: easeInOut,
-          }}
-          className="
-            flex
-            w-full
-            flex-col
-            items-center
-            justify-center
-            px-2.5
-            pt-12.5
-            text-center
+    <motion.div
+  initial={{
+    opacity: 0,
+    x: 35,
+  }}
+  whileInView={{
+    opacity: 1,
+    x: 0,
+  }}
+  viewport={{
+    once: true,
+    amount: 0.2,
+  }}
+  transition={{
+    duration: 0.8,
+    delay: 0.15,
+    ease: easeInOut,
+  }}
+  className="
+    order-1
+    mx-auto
+    flex
+    w-full
+    max-w-150
+    flex-col
+    items-center
+    justify-center
+    px-5
+    pt-0
+    text-center
 
-            sm:pt-13.75
+    sm:px-6
 
-            lg:w-[calc(100%-540px)]
-            lg:px-13.75
-            lg:pt-0
-          "
-        >
+    lg:order-2
+    lg:mx-0
+    lg:max-w-none
+    lg:w-[calc(100%-540px)]
+    lg:px-13.75
+    lg:pt-0
+  "
+>
           {/* =======================================================
-              WHY HARMONY — ALTERNATING HIGHLIGHT
+              WHY HARMONY
           ======================================================== */}
 
           <motion.div
             animate={{
-              opacity: [0.55, 1, 0.55],
+              opacity: [0.65, 1, 0.65],
             }}
             transition={{
               duration: 2.4,
@@ -311,7 +310,7 @@ export default function WhyHarmony() {
                 text-[15px]
                 font-bold
                 leading-5
-                text-[#007c85]
+                text-[#0F8B8D]
 
                 sm:text-[16px]
                 sm:leading-5.25
@@ -336,7 +335,7 @@ export default function WhyHarmony() {
                 mx-auto
                 mt-2.25
                 h-px
-                bg-[#007c85]
+                bg-[#0F8B8D]
               "
             />
           </motion.div>
@@ -346,48 +345,49 @@ export default function WhyHarmony() {
           ======================================================== */}
 
           <motion.h2
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              duration: 0.75,
-              delay: 0.3,
-              ease: easeInOut,
-            }}
-            className="
-              m-0
-              mt-3
-              max-w-137.5
-              text-[21px]
-              font-bold
-              leading-7.25
-              tracking-[-0.4px]
-              text-[#241500]
+  initial={{
+    opacity: 0,
+    y: 20,
+  }}
+  whileInView={{
+    opacity: 1,
+    y: 0,
+  }}
+  viewport={{
+    once: true,
+  }}
+  transition={{
+    duration: 0.75,
+    delay: 0.3,
+    ease: easeInOut,
+  }}
+  className="
+    mx-auto
+    m-0
+    mt-3
+    w-full
+    max-w-82.5
+    text-[21px]
+    font-bold
+    leading-7.25
+    tracking-[-0.4px]
+    text-[#0B7375]
 
-              sm:text-[23px]
-              sm:leading-7.75
+    sm:max-w-137.5
+    sm:text-[23px]
+    sm:leading-7.75
 
-              lg:max-w-147.5
-              lg:text-[28px]
-              lg:leading-9.5
-            "
-          >
-            A symphony of space, comfort and community
-          </motion.h2>
+    lg:max-w-147.5
+    lg:text-[28px]
+    lg:leading-9.5
+  "
+>
+  A symphony of space, comfort and community
+</motion.h2>
 
           {/* =======================================================
-              ACTIVE FEATURE TITLE
+              ACTIVE FEATURE DESCRIPTION
           ======================================================== */}
-{/* ACTIVE FEATURE DESCRIPTION */}
-
 <motion.div
   key={activeFeature}
   initial={{
@@ -403,17 +403,15 @@ export default function WhyHarmony() {
     ease: easeInOut,
   }}
   className="
+    mx-auto
     mt-5
     min-h-12
-    max-w-125
-    text-[13px]
+    w-full
+    text-center
+    text-[14px]
     font-normal
     leading-5
-    text-[#5f5a53]
-
-    sm:text-[14px]
-    sm:leading-5.5
-
+    text-[#0F8B8D]
     lg:mt-5.5
     lg:max-w-137.5
     lg:text-[15px]
@@ -427,61 +425,58 @@ export default function WhyHarmony() {
               CTA
           ======================================================== */}
 
-          <motion.button
-            type="button"
-            onClick={() => setIsVisitOpen(true)}
-            initial={{
-              opacity: 0,
-              y: 15,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            whileHover={{
-              scale: 1.04,
-            }}
-            whileTap={{
-              scale: 0.97,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              duration: 0.6,
-              delay: 0.45,
-              ease: easeInOut,
-            }}
-            className="
-              mt-10.5
-              flex
-              h-9.25
-              items-center
-              justify-center
-              rounded-[7px]
-              bg-[#007c85]
-              px-3
-              text-[10px]
-              font-semibold
-              leading-none
-              text-white
-              transition-colors
-              duration-200
-              hover:bg-[#006d74]
-              focus:outline-none
-              focus:ring-2
-              focus:ring-[#007c85]
-              focus:ring-offset-2
-              focus:ring-offset-[#e1dfd9]
-
-              lg:mt-9.5
-              lg:h-10.75
-              lg:px-5
-              lg:text-[11px]
-            "
-          >
-            BOOK A SITE VISIT
-          </motion.button>
+      <motion.button
+  type="button"
+  onClick={() => setIsVisitOpen(true)}
+  initial={{
+    opacity: 0,
+    y: 15,
+  }}
+  whileInView={{
+    opacity: 1,
+    y: 0,
+  }}
+  whileHover={{
+    scale: 1.04,
+  }}
+  whileTap={{
+    scale: 0.97,
+  }}
+  viewport={{
+    once: true,
+  }}
+  transition={{
+    duration: 0.6,
+    delay: 0.45,
+    ease: easeInOut,
+  }}
+  className="
+    mx-auto
+    mt-5.5
+    flex
+    h-12.25
+    mb-10
+    md:mb-0
+    items-center
+    justify-center
+    rounded-[7px]
+    bg-[#0F8B8D]
+    px-3
+    text-[14px]
+    font-semibold
+    leading-none
+    text-white
+    transition-colors
+    duration-200
+    hover:bg-[#0B7375]
+    lg:mt-9.5
+    lg:h-10.75
+    lg:px-5
+    lg:text-[14px]
+  "
+>
+  BOOK A SITE VISIT
+</motion.button>
         </motion.div>
       </div>
 

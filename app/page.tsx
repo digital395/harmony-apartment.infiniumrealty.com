@@ -8,11 +8,14 @@ import WhyHarmony from "@/section/why";
 import HarmonyFilmSection from "@/section/video";
 import LocationSection from "@/section/location";
 import CTA from "@/section/cta";
+import HomePopup from "@/components/home-popup";
+import Stats from "@/section/stats";
 
 export default function HomePage() {
   return (
     <main className="overflow-hidden">
       <Hero />
+      <Stats />
       <AboutHarmony />
       <ChooseYourHome />
       <HarmonyVillaFeatures />
@@ -22,6 +25,7 @@ export default function HomePage() {
       <HarmonyFilmSection />
       <LocationSection />
       <CTA />
+      <HomePopup />
     </main>
   );
 }

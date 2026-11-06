@@ -179,7 +179,7 @@ export default function EnquiryPopup({
                 max-w-117.5
                 text-[14px]
                 leading-5.5
-                text-[#716b63]
+                text-[#006B6B]
                 sm:text-[15px]
                 sm:leading-5.75
               "
