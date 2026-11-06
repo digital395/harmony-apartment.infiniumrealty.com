@@ -263,7 +263,7 @@ export default function ChooseYourHome() {
                 xl:leading-7
               "
             >
-              Pick Row Villa or Individual Villa and see what is on offer.
+              Pick Apartment and see what is on offer.
             </motion.p>
           </div>
 
@@ -352,7 +352,7 @@ className="
 
   lg:mt-13.75
   lg:grid
-  lg:grid-cols-3
+lg:grid-cols-1
   lg:items-stretch
   lg:gap-9
 
@@ -377,184 +377,219 @@ className="
     border
     border-[#0F8B8D]/20
     bg-white
-    p-6
+    p-5
     shadow-[0_2px_10px_rgba(0,0,0,0.04)]
+
+    lg:col-span-3
+    lg:p-6
+
+    xl:p-7
   "
 >
-  {/* FLOOR PLAN */}
-  <motion.div
-    initial={{ opacity: 0, scale: 0.98 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{
-      duration: 0.6,
-      ease: easeInOut,
-    }}
+  <div
     className="
-      relative
-      flex
-      h-40.5
-      w-full
-      items-center
-      justify-center
-      overflow-hidden
-      rounded-xl
-      border
-      border-[#0F8B8D]/30
-      bg-[#F2FFFF]
+      lg:grid
+      lg:grid-cols-[1.1fr_0.9fr]
+      lg:gap-8
+      xl:grid-cols-[1.15fr_0.85fr]
+      xl:gap-10
     "
   >
-    {property.image ? (
-      <motion.div
-        className="absolute inset-0"
-        initial={{ scale: 1.03 }}
-        whileInView={{ scale: 1 }}
-        viewport={{ once: true }}
-        whileHover={{ scale: 1.02 }}
-        transition={{
-          duration: 0.8,
-          ease: easeInOut,
-        }}
-      >
-        <Image
-          src={property.image}
-          alt={`${property.type} floor plan`}
-          fill
-          sizes="
-            (max-width: 639px) 100vw,
-            (max-width: 1023px) 50vw,
-            33vw
-          "
-          className="object-cover object-center"
-        />
-      </motion.div>
-    ) : (
-      <span
-        className="
-          relative
-          z-10
-          text-center
-          text-[14px]
-          font-normal
-          text-[#0F8B8D]
-        "
-      >
-        FLOOR PLAN · {property.type}
-      </span>
-    )}
-  </motion.div>
-
-  {/* CONTENT */}
-  <div className="pt-5">
-    
-    {/* TITLE + TYPE */}
-    <div
-      className="
-        flex
-        items-center
-        justify-between
-        gap-4
-      "
-    >
-      <h3
-        className="
-          m-0
-          text-[20px]
-          font-bold
-          leading-none
-          tracking-[-0.5px]
-          text-[#0B7375]
-          lg:text-[34px]
-        "
-      >
-        {property.title}
-      </h3>
-
-      <span
-        className="
-          shrink-0
-          text-[15px]
-          font-medium
-          leading-none
-          text-[#0F8B8D]
-        "
-      >
-        {property.type}
-      </span>
-    </div>
-
-    {/* AREA */}
-{/* AREA */}
-<div
-  className="
-    mt-5
-    flex
-    items-center
-    justify-between
-    gap-4
-  "
->
-  <p
-    className="
-      m-0
-        text-[15px]
-          font-medium
-          leading-none
-          text-[#0F8B8D]
-    "
-  >
-    Super built-up area
-  </p>
-
-  <p
-    className="
-      m-0
-      shrink-0
-      text-[20px]
-      md:text-[25px]
-      font-bold
-      leading-8
-      tracking-[-0.3px]
-      text-[#0B7375]
-    "
-  >
-    {property.area}
-  </p>
-</div>
-
-    {/* CTA */}
-    <motion.button
-      type="button"
-      // onClick={handlePriceClick}
-onClick={() => setIsPopupOpen(true)}
-      whileHover={{
-        backgroundColor: "#0B7375",
-      }}
-      whileTap={{
-        scale: 0.985,
+    {/* FLOOR PLAN */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.98 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.6,
+        ease: easeInOut,
       }}
       className="
-        mt-5
+        relative
         flex
-        h-10
-        md:h-15
+        h-40.5
         w-full
         items-center
         justify-center
+        overflow-hidden
         rounded-xl
-        bg-[#0F8B8D]
-        px-5
-        text-[15px]
-        md:text-[17px]
-        font-semibold
-        leading-none
-        text-white
-        transition-colors
-        duration-200
+        border
+        border-[#0F8B8D]/30
+        bg-[#F2FFFF]
+
+        lg:h-95
+        lg:rounded-[14px]
+
+        xl:h-105
       "
     >
-      Get price &amp; floor plan
-    </motion.button>
+      {property.image ? (
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.03 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.02 }}
+          transition={{
+            duration: 0.8,
+            ease: easeInOut,
+          }}
+        >
+          <Image
+            src={property.image}
+            alt={`${property.type} floor plan`}
+            fill
+            sizes="
+              (max-width: 639px) 100vw,
+              (max-width: 1023px) 50vw,
+              60vw
+            "
+            className="object-contain object-center"
+          />
+        </motion.div>
+      ) : (
+        <span
+          className="
+            relative
+            z-10
+            text-center
+            text-[14px]
+            font-normal
+            text-[#0F8B8D]
+          "
+        >
+          FLOOR PLAN · {property.type}
+        </span>
+      )}
+    </motion.div>
+
+    {/* CONTENT */}
+    <div className="pt-5 lg:flex lg:flex-col lg:justify-center lg:pt-0">
+
+      {/* TITLE + TYPE */}
+      <div
+        className="
+          flex
+          items-center
+          justify-between
+          gap-4
+        "
+      >
+        <h3
+          className="
+            m-0
+            text-[20px]
+            font-bold
+            leading-none
+            tracking-[-0.5px]
+            text-[#0B7375]
+
+            lg:text-[34px]
+            xl:text-[38px]
+          "
+        >
+          {property.title}
+        </h3>
+
+        <span
+          className="
+            shrink-0
+            text-[15px]
+            font-medium
+            leading-none
+            text-[#0F8B8D]
+
+            lg:text-[16px]
+          "
+        >
+          {property.type}
+        </span>
+      </div>
+
+      {/* AREA */}
+      <div
+        className="
+          mt-5
+          flex
+          items-center
+          justify-between
+          gap-4
+
+          lg:mt-8
+        "
+      >
+        <p
+          className="
+            m-0
+            text-[15px]
+            font-medium
+            leading-none
+            text-[#0F8B8D]
+
+            lg:text-[17px]
+          "
+        >
+          Super built-up area
+        </p>
+
+        <p
+          className="
+            m-0
+            shrink-0
+            text-[20px]
+            font-bold
+            leading-8
+            tracking-[-0.3px]
+            text-[#0B7375]
+
+            md:text-[25px]
+            lg:text-[28px]
+          "
+        >
+          {property.area}
+        </p>
+      </div>
+
+      {/* CTA */}
+      <motion.button
+        type="button"
+        onClick={() => setIsPopupOpen(true)}
+        whileHover={{
+          backgroundColor: "#0B7375",
+        }}
+        whileTap={{
+          scale: 0.985,
+        }}
+        className="
+          mt-5
+          flex
+          h-10
+          w-full
+          items-center
+          justify-center
+          rounded-xl
+          bg-[#0F8B8D]
+          px-5
+          text-[15px]
+          font-semibold
+          leading-none
+          text-white
+          transition-colors
+          duration-200
+
+          md:h-15
+          md:text-[17px]
+
+          lg:mt-9
+          lg:h-14
+          lg:text-[16px]
+
+          xl:h-15
+        "
+      >
+        Get price &amp; floor plan
+      </motion.button>
+    </div>
   </div>
 </motion.article>
             ))}
